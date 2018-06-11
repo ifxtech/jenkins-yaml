@@ -14,12 +14,12 @@ class DockerConfiguration {
         "${projectConfiguration.projectName}".toLowerCase();
     }
 
-    def  reference() {
+    def reference() {
         def env = projectConfiguration.env;
         "${baseName()}-${env.BRANCH_NAME}".toLowerCase();
     }
 
-    def  tag() {
+    def tag() {
         def env = projectConfiguration.env;
         "${env.BUILD_ID}".toLowerCase();
     }

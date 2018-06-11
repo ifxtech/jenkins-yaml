@@ -6,23 +6,23 @@ All our projects are built using a Dockerfile
 When using this library, your Jenkinsfile should look something like this:
 
 ```
-@Library('wolox-ci') _
+@Library('jenkins-yaml') _
 
 node {
 
   checkout scm
 
-  woloxCi('.woloxci/config.yml');
+  jenkinsYAML('docker/config.yml');
 }
 ```
 
-It basically loads the library, clones the target repository and calls `woloxCi` to make its magic.
-As an argument, `woloxCi` receives the path to a configuration yaml file.
+It basically loads the library, clones the target repository and calls `jenkinsYAML` to make its magic.
+As an argument, `jenkinsYAML` receives the path to a configuration yaml file.
 This file looks something like this:
 
 ```
 config:
-  dockerfile: .woloxci/Dockerfile
+  dockerImage: library/redis
   project_name: some-rails-project
 
 services:

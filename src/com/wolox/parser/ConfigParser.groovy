@@ -13,24 +13,13 @@ class ConfigParser {
         ProjectConfiguration projectConfiguration = new ProjectConfiguration();
 
         projectConfiguration.buildNumber = env.BUILD_ID;
-
-        // parse the environment variables
         projectConfiguration.environment    = parseEnvironment(yaml.environment);
-
-        // parse the execution steps
         projectConfiguration.steps          = parseSteps(yaml.steps);
-
-        // parse the necessary services
         projectConfiguration.services   = parseServices(yaml.services);
-
-        // load the dockefile
+        projectConfiguration.dockerImage = parseDockerImage(yaml.config);
         projectConfiguration.dockerfile = parseDockerfile(yaml.config);
-
-        // load the project name
         projectConfiguration.projectName = parseProjectName(yaml.config);
-
         projectConfiguration.env = env;
-
         projectConfiguration.dockerConfiguration = new DockerConfiguration(projectConfiguration: projectConfiguration);
 
         return projectConfiguration;
@@ -87,6 +76,14 @@ class ConfigParser {
         }
     }
 
+    static def parseImage(def config) {
+        if (!config || !config["image"]) {
+            return null;
+        }
+
+        return config["image"];
+    }
+
     static def parseDockerfile(def config) {
         if (!config || !config["dockerfile"]) {
             return "Dockerfile";
@@ -97,7 +94,7 @@ class ConfigParser {
 
     static def parseProjectName(def config) {
         if (!config || !config["project_name"]) {
-            return "woloxci-project";
+            return "jenkins-yaml";
         }
 
         return config["project_name"];

@@ -1,4 +1,4 @@
-@Library('wolox-ci')
+@Library('jenkins-yaml')
 import com.wolox.*;
 
 def call(ProjectConfiguration projectConfig) {
