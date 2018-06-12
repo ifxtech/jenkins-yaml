@@ -3,7 +3,8 @@ import com.wolox.parser.ConfigParser;
 import com.wolox.*;
 
 def call(String yamlName, def override=[]) {
-    def yaml = override << readYaml file: yamlName;
+    def yaml = readYaml file: yamlName;
+    yaml = override << yaml
 
     def buildNumber = Integer.parseInt(env.BUILD_ID)
 
