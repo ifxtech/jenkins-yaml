@@ -2,13 +2,13 @@
 import com.wolox.parser.ConfigParser;
 import com.wolox.*;
 
-def call(String yamlName) {
-    def yaml = readYaml file: yamlName;
+def call(String yamlName, def override=[]) {
+    def yaml = readYaml file: yamlName, text: override;
 
     def buildNumber = Integer.parseInt(env.BUILD_ID)
 
     // load project's configuration
-    ProjectConfiguration projectConfig = ConfigParser.parse(yaml, env);
+    ProjectConfiguration projectConfig = ConfigParser.parse(yaml, env, error);
 
     def imageName = projectConfig.dockerConfiguration.imageName().toLowerCase();
 

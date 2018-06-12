@@ -4,13 +4,16 @@ import com.wolox.docker.DockerConfiguration;
 import com.wolox.steps.Steps;
 
 class ProjectConfiguration {
+    DockerConfiguration dockerConfiguration;
+    Steps steps;
+
+    def env;
+    def error; 
+
     def environment;
     def services;
-    Steps steps;
     def dockerfile;
     def dockerImage;
     def projectName;
     def buildNumber;
-    DockerConfiguration dockerConfiguration;
-    def env;
 }

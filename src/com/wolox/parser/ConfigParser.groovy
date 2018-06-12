@@ -9,17 +9,21 @@ class ConfigParser {
 
     private static String LATEST = 'latest';
 
-    static ProjectConfiguration parse(def yaml, def env) {
+    static ProjectConfiguration parse(def yaml, def env, def error) {
         ProjectConfiguration projectConfiguration = new ProjectConfiguration();
+        projectConfiguration.env            = env;
+        projectConfiguration.error          = error;
 
-        projectConfiguration.buildNumber = env.BUILD_ID;
+        projectConfiguration.buildNumber    = env.BUILD_ID;
         projectConfiguration.environment    = parseEnvironment(yaml.environment);
         projectConfiguration.steps          = parseSteps(yaml.steps);
-        projectConfiguration.services   = parseServices(yaml.services);
-        projectConfiguration.dockerImage = parseDockerImage(yaml.config);
-        projectConfiguration.dockerfile = parseDockerfile(yaml.config);
-        projectConfiguration.projectName = parseProjectName(yaml.config);
-        projectConfiguration.env = env;
+        projectConfiguration.services       = parseServices(yaml.services);
+//        projectConfiguration.docker         = parseDocker(yaml.docker);
+
+        projectConfiguration.dockerImage    = parseDockerImage(yaml.config);
+        projectConfiguration.dockerfile     = parseDockerfile(yaml.config);
+        projectConfiguration.projectName    = parseProjectName(yaml.config);
+
         projectConfiguration.dockerConfiguration = new DockerConfiguration(projectConfiguration: projectConfiguration);
 
         return projectConfiguration;
@@ -99,4 +103,8 @@ class ConfigParser {
 
         return config["project_name"];
     }
+
+    // static def parseDocker(def yamlDocker) {
+    //     if (!yamlDocker)
+    // }
 }
