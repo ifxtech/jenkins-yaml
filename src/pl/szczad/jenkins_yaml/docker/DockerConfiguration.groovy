@@ -1,6 +1,6 @@
-package com.wolox.docker;
+package pl.szczad.jenkins_yaml.docker;
 
-import com.wolox.ProjectConfiguration;
+import pl.szczad.jenkins_yaml.ProjectConfiguration;
 
 class DockerConfiguration {
 

@@ -1,5 +1,5 @@
 @Library('jenkins-yaml')
-import com.wolox.*;
+import pl.szczad.jenkins_yaml.*;
 
 def call(ProjectConfiguration projectConfig, def _, def nextClosure) {
     return { variables ->

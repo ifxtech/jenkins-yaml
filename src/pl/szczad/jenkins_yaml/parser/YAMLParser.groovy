@@ -1,24 +1,24 @@
-package com.wolox.parser;
+package pl.szczad.jenkins_yaml.parser;
 
-import com.wolox.ProjectConfiguration;
-import com.wolox.docker.DockerConfiguration;
-import com.wolox.services.*;
-import com.wolox.steps.*;
+import pl.szczad.jenkins_yaml.ProjectConfiguration;
+import pl.szczad.jenkins_yaml.docker.DockerConfiguration;
+import pl.szczad.jenkins_yaml.services.*;
+import pl.szczad.jenkins_yaml.steps.*;
 
-class ConfigParser {
+class YAMLParser {
 
     private static String LATEST = 'latest';
 
-    static ProjectConfiguration parse(def yaml, def env, def error) {
-        ProjectConfiguration projectConfiguration = new ProjectConfiguration();
-        projectConfiguration.env            = env;
+    static ProjectConfiguration parse(org.jenkinsci.plugins.workflow.cps.CpsScript script, def yaml) {
+        ProjectConfiguration projectConfiguration = new ProjectConfiguration(script);
+
         projectConfiguration.error          = error;
 
-        projectConfiguration.buildNumber    = env.BUILD_ID;
         projectConfiguration.environment    = parseEnvironment(yaml.environment);
         projectConfiguration.steps          = parseSteps(yaml.steps);
         projectConfiguration.services       = parseServices(yaml.services);
 //        projectConfiguration.docker         = parseDocker(yaml.docker);
+        projectConfiguration.stacks         = 
 
         projectConfiguration.dockerImage    = parseDockerImage(yaml.config);
         projectConfiguration.dockerfile     = parseDockerfile(yaml.config);

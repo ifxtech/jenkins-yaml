@@ -1,6 +1,6 @@
 @Library('jenkins-yaml')
-import com.wolox.*;
-import com.wolox.steps.Step;
+import pl.szczad.jenkins_yaml.*;
+import pl.szczad.jenkins_yaml.steps.Step;
 
 def call(ProjectConfiguration projectConfig, def dockerImage) {
     return { variables ->

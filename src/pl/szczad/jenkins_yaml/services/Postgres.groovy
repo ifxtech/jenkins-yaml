@@ -1,4 +1,4 @@
-package com.wolox.services;
+package pl.szczad.jenkins_yaml.services;
 
 class Postgres {
     def getVar() {

@@ -1,4 +1,4 @@
-package com.wolox.steps;
+package pl.szczad.jenkins_yaml.steps;
 
 class Steps {
     List<Step> steps;
